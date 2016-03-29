@@ -9,6 +9,13 @@
 </head>
 <body>
 <style>
+		body {
+			background-image: url(background.jpg);
+			background-attachment:fixed;
+			background-attachment:scroll;
+			background-repeat: no-repeat;
+			background-position: top center;
+		}
         #left-panel{
             float: left;
             height: 500px;
@@ -70,6 +77,21 @@
 				padding: 1%;
 			}
 		}
+		.topbutton {
+			border:2px solid #ccc;
+			background-image: url(top3.png);
+			background-repeat: no-repeat;
+			background-position: center;
+			padding:10px;
+			position:fixed;
+			bottom:1%;
+			right:1%;
+			cursor:pointer;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-khtml-border-radius: 5px;
+		}
 		
     </style>
 	<div class="page-container">
@@ -104,6 +126,7 @@
 				<img src="9.jpg"/>
 			</div>
 		</div>
+		<a href="#" title="Вернуться к началу" class="topbutton">__</a>
 	</div>
 </body>
 </html>
