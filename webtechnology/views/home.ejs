@@ -101,7 +101,7 @@
 		<div id="content">
 		<% data.forEach(function (datum) {%>
         <div id =<%= "contect"+datum.id %>>
-            <iframe src="<%= datum.url %>"><%= datum.text %></iframe>
+            <iframe src="<%= datum.url %>"></iframe>
         </div>
 		<%}); %>
 			
@@ -115,6 +115,8 @@
 			var request = new XMLHttpRequest(); 
 			request.open('POST', '/new?text='+ text + '&url=' + url);
             request.send();
+			var newDiv = document.createElement('div');
+            newDiv.innerHTML = '' + '<div><iframe src="'+ url +'"></iframe></div>';
             document.getElementById('content').appendChild(newDiv);
             document.getElementById('input').value = '';
 			document.getElementById('input1').value = '';
