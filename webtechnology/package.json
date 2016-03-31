@@ -1,0 +1,12 @@
+{
+  "name": "webtechnology",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "sqlite3": "^3.1.2"
+  }
+}

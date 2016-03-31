@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css"
+		rel="stylesheet"
+		type="text/css">
+</head>
+<body>
+<style>
+		body {
+			background-image: url(http://silviahartmann.com/background-tile-art/images/grey-repeating-background-5.jpg);
+			background-attachment:fixed;
+		}
+        #left-panel{
+            float: left;
+            height: 500px;
+            width: 150px;
+            background: blue;
+        }
+        #content{
+            margin-left: 150px;
+            background: gray;
+        }
+		.content {
+			float: left;
+			width: 1000px;
+			text-align: center;
+			max-width: 90%; /* контейнер не превышает 90% ширины экрана */
+			
+		}
+		.page-container {
+			max-width: 1600px;
+			margin: 0 auto;
+			padding: 0;
+		}
+		iframe {
+			float: left;
+			max-width: 31%;
+			height: auto;
+			padding: 1%; /* небольшие оступы для изображений */
+		}
+		@media screen and (max-width: 768px) {
+			#left-panel{
+				display: none
+			}
+			#content{
+				margin-left: 0 !important;
+			}
+			.content {
+				min-width: 320px;
+			}
+			iframe {
+				max-width: 48%; /* 2 изображения в ряд */
+				height: auto;
+				padding: 1%; /* небольшие оступы для изображений */
+			}
+		}
+		@media screen and (max-width: 500px) {
+			#left-panel{
+				display: none
+			}
+			#content{
+				margin-left: 0 !important;
+			}
+			.content {
+				width: 320px;
+				min-width: 320px;
+			}
+			iframe {
+				max-width: 98%;
+				height: auto;
+				padding: 1%;
+			}
+		}
+		.topbutton {
+			border:2px solid #ccc;
+			background-image: url(http://icons.iconarchive.com/icons/graphicrating/koloria/32/Button-Up-icon.png);
+			background-repeat: no-repeat;
+			background-position: center;
+			padding:10px;
+			position:fixed;
+			bottom:1%;
+			right:1%;
+			cursor:pointer;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-khtml-border-radius: 5px;
+		}
+		
+    </style>
+	<div class="page-container">
+		<header style="height: 100px; text-align: center; background: red;"></header>
+		<div id="left-panel">
+			<input id ="input" style="width:145px" type="text"/>
+			<input id ="input1" style="width:145px" type="text"/>
+			<button id = "create" onclick = "create()">add</button>
+		</div>
+		<div id="content">
+		<% data.forEach(function (datum) {%>
+        <div id =<%= "contect"+datum.id %>>
+            <iframe src="<%= datum.url %>"><%= datum.text %></iframe>
+        </div>
+		<%}); %>
+			
+		</div>
+		<a href="#" title="Вернуться к началу" class="topbutton">__</a>
+	</div>
+	<script>
+        function create() {
+            var  text = document.getElementById('input').value;
+			var  url = document.getElementById('input1').value;
+			var request = new XMLHttpRequest(); 
+			request.open('POST', '/new?text='+ text + '&url=' + url);
+            request.send();
+            document.getElementById('content').appendChild(newDiv);
+            document.getElementById('input').value = '';
+			document.getElementById('input1').value = '';
+        };
+        function removeText(id) {
+            var request = new XMLHttpRequest();
+            request.open('POST', '/delete?id='+id);
+            request.send();
+            document.getElementById('contect'+id).remove();
+        }
+    </script>
+</body>
+</html>
